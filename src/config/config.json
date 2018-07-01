@@ -1,0 +1,12 @@
+{
+    "development": {
+        "app" : "Hello world"
+    },
+    "test": {
+
+    },
+    "production": {
+
+    }
+}
+  
