@@ -1,7 +1,5 @@
 import { createConnection } from "typeorm";
 
-import { User } from "./entity/User.entity";
-
 import "reflect-metadata";
 
 import * as express from 'express';
@@ -12,7 +10,6 @@ var multipart = require('connect-multiparty');
 import { router } from './routes/index.router';
 
 createConnection().then(async connection => {
-
 
     const app = express();
     const port = process.env.port || 8080;

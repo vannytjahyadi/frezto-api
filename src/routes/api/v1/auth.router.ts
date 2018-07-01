@@ -9,4 +9,5 @@ export const authRouter = Router();
 let authentication = new AuthenticationController();
 
 let registerRequestService = new RegisterRequestService();
-authRouter.post('/register', registerRequestService.register, authentication.register);
+
+authRouter.post('/register', registerRequestService.register, authentication.register); 
