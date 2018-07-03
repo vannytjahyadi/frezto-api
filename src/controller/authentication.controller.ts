@@ -1,6 +1,6 @@
 import { getManager } from "typeorm";
 
-import { User } from "../entity/User.entity";
+import { User } from "@entity/User.entity";
 
 export class AuthenticationController {
     

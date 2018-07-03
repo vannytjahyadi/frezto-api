@@ -1,6 +1,6 @@
 import * as underscore from 'underscore';
 
-export class ErrorHandleService {
+export class ErrorService {
     
     constructor() {}
     

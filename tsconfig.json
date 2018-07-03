@@ -1,8 +1,20 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "paths": {
+      "@config/*": ["config/*"],
+      "@controller/*": ["controller/*"],
+      "@entity/*": ["entity/*"],
+      "@middleware/*": ["middleware/*"],
+      "@request/*": ["request/*"],
+      "@routes/*": ["routes/*"],
+      "@service/*": ["service/*"],
+      "@view/*": ["view/*"]
+    },
     "target": "es6",
     "module": "commonjs",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "types": ["node"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true

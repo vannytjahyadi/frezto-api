@@ -14,6 +14,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 var multipart = require('connect-multiparty');
+require('module-alias/register');
 const index_router_1 = require("./routes/index.router");
 typeorm_1.createConnection().then((connection) => __awaiter(this, void 0, void 0, function* () {
     const app = express();

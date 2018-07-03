@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const User_entity_1 = require("../entity/User.entity");
+const User_entity_1 = require("@entity/User.entity");
 class AuthenticationController {
     constructor() { }
     register(req, res, next) {

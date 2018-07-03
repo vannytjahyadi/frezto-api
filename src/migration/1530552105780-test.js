@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-class CreateUserTable1530268454317 {
+class test1530552105780 {
     up(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryRunner.createTable(new typeorm_1.Table({
@@ -17,29 +17,25 @@ class CreateUserTable1530268454317 {
                 columns: [
                     {
                         name: "id",
-                        type: "bigint",
-                        isPrimary: true,
+                        type: "int",
+                        isPrimary: true
                     },
                     {
                         name: "email",
                         type: "varchar",
                     },
                     {
-                        name: "first_name",
-                        type: "varchar",
-                    },
-                    {
-                        name: "last_name",
+                        name: "password",
                         type: "varchar",
                     }
                 ]
-            }), true);
+            }), false);
         });
     }
     down(queryRunner) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield queryRunner.dropTable("user", true);
+            yield queryRunner.dropTable("user");
         });
     }
 }
-exports.CreateUserTable1530268454317 = CreateUserTable1530268454317;
+exports.test1530552105780 = test1530552105780;

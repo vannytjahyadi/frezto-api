@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const underscore = require("underscore");
-class ErrorHandleService {
+class ErrorService {
     constructor() { }
     static sendErrorValidation(res, err) {
         let errDesc = [];
@@ -28,4 +28,4 @@ class ErrorHandleService {
         res.status(errorCode).send(Error);
     }
 }
-exports.ErrorHandleService = ErrorHandleService;
+exports.ErrorService = ErrorService;

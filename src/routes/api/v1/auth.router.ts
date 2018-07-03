@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-import { AuthenticationController } from '../../../controller/authentication.controller';
+import { AuthenticationController } from '@controller/Authentication.controller';
 
-import { RegisterRequestService } from '../../../request/authentication/register.service';
+import { RegisterRequestService } from '@request/authentication/Register.service';
 
 export const authRouter = Router();
 
