@@ -7,5 +7,5 @@ temp/
 npm-debug.log
 .DS_Store
 /*.env
-*.js
-*.js.map
+src/**/*.js
+src/**/*.js.map
