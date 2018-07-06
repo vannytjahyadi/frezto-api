@@ -10,10 +10,12 @@ require('module-alias/register');
 
 import { router } from './routes/index.router';
 
-createConnection().then(async connection => {
+import dbConfig from '@config/Database';
+
+createConnection(dbConfig).then(async connection => {
 
     const app = express();
-    const port = process.env.port || 8081;
+    const port = process.env.port || 8080;
 
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());

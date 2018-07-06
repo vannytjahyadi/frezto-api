@@ -1,5 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, BeforeInsert } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, BeforeInsert } from "typeorm";
 import { UserToken } from "./UserToken.entity";
+
+import { MailService } from "@service/Mail.service";
+import { HelperService } from "@service/Helper.service";
 
 @Entity()
 export class User {
@@ -22,10 +25,10 @@ export class User {
     @Column()
     last_name: string;
 
-    @Column()
+    @CreateDateColumn()
     created_at: Date;
 
-    @Column()
+    @UpdateDateColumn()
     updated_at: Date;
 
     @Column()
@@ -35,9 +38,16 @@ export class User {
     @OneToOne(type => UserToken, userToken => userToken.user )
     userToken: UserToken;
 
-
     @BeforeInsert()
     beforeInsert() {
         this.created_at = new Date();
+    }
+
+    static sendOtp(user, otpCode) {
+        MailService.sendEmail("user", user['email'], 'OTP CODE', 'example', {
+            first_name: user['first_name'],
+            last_name: user['last_name'],
+            otp_code: otpCode
+        });
     }
 }

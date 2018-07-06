@@ -44,11 +44,12 @@ var expressValidator = require("express-validator");
 var multipart = require('connect-multiparty');
 require('module-alias/register');
 var index_router_1 = require("./routes/index.router");
-typeorm_1.createConnection().then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
+var Database_1 = require("@config/Database");
+typeorm_1.createConnection(Database_1.default).then(function (connection) { return __awaiter(_this, void 0, void 0, function () {
     var app, port;
     return __generator(this, function (_a) {
         app = express();
-        port = process.env.port || 8081;
+        port = process.env.port || 8080;
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json());
         app.use(multipart());

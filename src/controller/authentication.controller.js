@@ -38,7 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var User_entity_1 = require("@entity/User.entity");
 var UserToken_entity_1 = require("@entity/UserToken.entity");
-var Mail_service_1 = require("@service/Mail.service");
 var Helper_service_1 = require("@service/Helper.service");
 var AuthenticationController = /** @class */ (function () {
     function AuthenticationController() {
@@ -51,10 +50,8 @@ var AuthenticationController = /** @class */ (function () {
                     case 0:
                         userRepository = typeorm_1.getManager().getRepository(User_entity_1.User);
                         newUser = userRepository.create(req.body);
-                        // save received post
                         return [4 /*yield*/, userRepository.save(newUser)];
                     case 1:
-                        // save received post
                         _a.sent();
                         userTokenRepository = typeorm_1.getManager().getRepository(UserToken_entity_1.UserToken);
                         userToken = new UserToken_entity_1.UserToken();
@@ -64,10 +61,9 @@ var AuthenticationController = /** @class */ (function () {
                         return [4 /*yield*/, userTokenRepository.save(userToken)];
                     case 2:
                         _a.sent();
-                        Mail_service_1.MailService.sendEmail("user", newUser["email"], 'OTP CODE', 'example', { otp_code: userToken.otp_code });
+                        User_entity_1.User.sendOtp(newUser, userToken['otp_code']);
                         res.status(200).json({
-                            result: "Success",
-                            data: []
+                            result: "Success"
                         });
                         return [2 /*return*/];
                 }

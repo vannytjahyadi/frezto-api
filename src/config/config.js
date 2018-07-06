@@ -19,8 +19,8 @@ var getConfig = function () {
         production: {
             mail: {
                 sender: 'no-reply@safewave.io',
-                user: "user",
-                pass: "pass"
+                user: "development.env",
+                pass: "d3v3lopm3nt"
             }
         }
     };
