@@ -9,22 +9,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const typeorm_1 = require("typeorm");
-let User = class User {
-};
-__decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
-], User.prototype, "id", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    typeorm_1.Column(),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-User = __decorate([
-    typeorm_1.Entity()
-], User);
+var typeorm_1 = require("typeorm");
+var UserToken_entity_1 = require("./UserToken.entity");
+var User = /** @class */ (function () {
+    function User() {
+    }
+    User.prototype.beforeInsert = function () {
+        this.created_at = new Date();
+    };
+    __decorate([
+        typeorm_1.PrimaryGeneratedColumn(),
+        __metadata("design:type", Number)
+    ], User.prototype, "id", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], User.prototype, "username", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], User.prototype, "email", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], User.prototype, "password", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], User.prototype, "first_name", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], User.prototype, "last_name", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Date)
+    ], User.prototype, "created_at", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Date)
+    ], User.prototype, "updated_at", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Boolean)
+    ], User.prototype, "is_deleted", void 0);
+    __decorate([
+        typeorm_1.OneToOne(function (type) { return UserToken_entity_1.UserToken; }, function (userToken) { return userToken.user; }),
+        __metadata("design:type", UserToken_entity_1.UserToken)
+    ], User.prototype, "userToken", void 0);
+    __decorate([
+        typeorm_1.BeforeInsert(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], User.prototype, "beforeInsert", null);
+    User = __decorate([
+        typeorm_1.Entity()
+    ], User);
+    return User;
+}());
 exports.User = User;

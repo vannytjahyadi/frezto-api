@@ -1,17 +1,15 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
    "port": 3306,
-   "username": "root",
-   "password": null,
-   "database": "my_api_dev",
+   "username": "bgooq8l26xd8xu8w",
+   "password": "jif3290giohx08fq",
+   "database": "frezto_dev",
    "synchronize": false,
-   "logging": false,
+   "logging": true,
    "entities": [
       "src/entity/*.js"
    ],
-   
-   "migrationsTableName": "db_migration",
    "migrations": [
       "src/migration/*.js"
    ],

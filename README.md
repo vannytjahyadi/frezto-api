@@ -9,3 +9,4 @@ Steps to run this project:
 
 database using mysql.
 mailer using sendgrid.
+if typeorm global not running use this command `./node_modules/.bin/typeorm`

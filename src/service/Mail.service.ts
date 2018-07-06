@@ -7,7 +7,7 @@ export class MailService {
     
     constructor() {}
     
-    static sendEmail(repecientType: "user" | "admin", repicients:string|string[], subject:string, text:string = '', filename:string, filedata:Object) {
+    static sendEmail(repecientType: "user" | "admin", repicients:string|string[], subject:string, filename:string, filedata:Object) {
 
         let transporter = nodemailer.createTransport({
             service: 'SendGrid',
@@ -23,7 +23,6 @@ export class MailService {
             from: config.mail.sender, // sender address
             to: repicients, // list of receivers
             subject: subject, // Subject line
-            text: text, // plain text body
             html: html // html body
         };
 

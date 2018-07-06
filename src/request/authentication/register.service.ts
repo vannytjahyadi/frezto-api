@@ -1,6 +1,6 @@
 import { ErrorService } from "@service/Error.service";
 
-import { getManager } from "typeorm";
+import { getRepository } from "typeorm";
 import { User } from "@entity/User.entity";
 
 export class RegisterRequestService {
@@ -9,22 +9,43 @@ export class RegisterRequestService {
 
     async register(req:any, res:any, next:any) {
 
-         // get a post repository to perform operations with post
-         const userRepository = getManager().getRepository(User);
-
-         let test = await userRepository.find();
-        console.log(test);
-
         req.check("email")
-            .exists().withMessage("Email is required")
-            .isEmail().withMessage("Email is invalid");
+            .exists().withMessage("required")
+            .notEmpty().withMessage("empty")
+            .isEmail().withMessage("invalid").normalizeEmail();
 
+        req.check("password")
+            .exists().withMessage("required");
 
-        req.checkBody("lastName", "Password is required").exists();
+        req.check("first_name")
+            .exists().withMessage("required")
+            .notEmpty().withMessage("empty");
 
+        req.check("last_name")
+            .exists().withMessage("required")
+            .notEmpty().withMessage("empty");
+
+        req.check("country_code")
+            .exists().withMessage("required")
+            .notEmpty().withMessage("empty");
+
+        req.check("phone_number")
+            .exists().withMessage("required")
+            .notEmpty().withMessage("empty");
+
+        
         var errors = req.validationErrors();
         if (errors) {
             ErrorService.sendErrorValidation(res, errors);
+            return false;
+        }
+
+        const userRepository = getRepository(User);
+        let user = await userRepository.find({email: req.body.email});
+
+        if (user.length) {
+            ErrorService.sendErrorResponse(res, 50001);
+            return false;
         } else {
             next();
         }

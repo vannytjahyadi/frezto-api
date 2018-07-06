@@ -1,34 +1,46 @@
 import * as underscore from 'underscore';
+import config from '@config/Config';
+import configErrorCode from '@config/ErrorCode';
+
+import { TranslateService } from '@service/Translate.service';
 
 export class ErrorService {
     
     constructor() {}
+
     
     static sendErrorValidation(res:any, err:any) {
-        let errDesc = [];
+        let errData = [];
 
         for (let i = 0; i < err.length; i++) {
-            let tempIndex = underscore.findIndex(errDesc, {field: err[i]['param']});
+            let tempIndex = underscore.findIndex(errData, {field: err[i]['param']});
+            let msg = TranslateService.translateError(err[i]['msg'], err[i]['param']);
             if (tempIndex > -1) {
-                errDesc[tempIndex]['errors'].push(err[i]['msg']);
+                errData[tempIndex]['errors'].push(msg);
             } else {
-                errDesc.push({
+                errData.push({
                     field: err[i]['param'],
-                    errors: [err[i]['msg']]
+                    errors: [msg]
                 });
             }
         }
-        this.sendErrorResponse(res, 400, errDesc);
+        this.sendErrorResponse(res, 10001, errData);
     }
 
-     static sendErrorResponse(res: any, errorCode: number, errorDescription: any): void {
+     static sendErrorResponse(res: any, errorCode:number = 10000, data:Object = null, statusCode:number = 400): void {
 
         let Error = {
 			result: 'Fail',
 			code: errorCode,
-			desc: errorDescription,
+            desc: configErrorCode[errorCode]
         };
+
+        if (data) {
+            Error['data'] = data;
+        }
+
+        console.log(Error);
         
-        res.status(errorCode).send(Error);
+        res.status(statusCode).send(Error);
 	}
 }

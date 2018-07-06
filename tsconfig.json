@@ -12,7 +12,8 @@
       "@service/*": ["service/*"],
       "@view/*": ["view/*"]
     },
-    "target": "es6",
+    "lib": ["es5", "es6"],
+    "target": "es5",
     "module": "commonjs",
     "noImplicitAny": false,
     "types": ["node"],

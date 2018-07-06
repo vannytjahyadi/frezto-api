@@ -1,0 +1,9 @@
+{
+    "error": {
+        "required": "<<attribute>> is required",
+        "empty": "<<attribute>> must not empty",
+        "invalid": "<<attribute>> is invalid",
+        "min": "<<attribute>> min <<number>> character",
+        "max": "<<attribute>> max <<number>> character"
+    }
+}
