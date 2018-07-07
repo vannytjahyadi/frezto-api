@@ -8,5 +8,4 @@ npm-debug.log
 .DS_Store
 /*.env
 
-/src/**/*.*.js
-/src/**/*.*.js.map
+/src/*.js
