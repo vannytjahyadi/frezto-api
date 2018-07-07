@@ -7,7 +7,7 @@ export class RegisterRequestService {
     
     constructor() {}
 
-    async register(req:any, res:any, next:any) {
+    async validate(req:any, res:any, next:any) {
 
         req.check("email")
             .exists().withMessage("required")

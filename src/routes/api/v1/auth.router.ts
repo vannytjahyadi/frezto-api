@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
-import { AuthenticationController } from '@controller/Authentication.controller';
-
 import { RegisterRequestService } from '@request/authentication/Register.service';
 
-export const authRouter = Router();
+import { RegisterController } from '@controller/authentication/Register.controller';
 
-let authentication = new AuthenticationController();
+export const AuthRouter = Router();
+
 let registerRequestService = new RegisterRequestService();
+let registerController = new RegisterController();
 
-authRouter.post('/register', registerRequestService.register, authentication.register); 
+AuthRouter.post('/register', registerRequestService.validate, registerController.register); 

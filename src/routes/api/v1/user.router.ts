@@ -1,23 +1,32 @@
 import { Router } from 'express';
 
-export const userRouter = Router();
+export const UserRouter = Router();
 
-userRouter.get('/', (req, res) => {
+UserRouter.post('/resend-otp-code', (req, res) => {
+    res.status(200).json('check username');
+});
+
+UserRouter.get('/check-username', (req, res) => {
+    console.log(req.query);
+    res.status(200).json('check username');
+});
+
+UserRouter.get('/', (req, res) => {
     res.status(200).json('get user list');
 });
 
-userRouter.post('/', (req, res) => {
+UserRouter.post('/', (req, res) => {
     res.status(200).json('create user');
 });
 
-userRouter.get('/:id', (req, res) => {
+UserRouter.get('/:id', (req, res) => {
     res.status(200).json('get user detail with id ' +  req.params.id);
 });
 
-userRouter.put('/', (req, res) => {
+UserRouter.put('/', (req, res) => {
     res.status(200).json('update user');
 });
 
-userRouter.delete('/', (req, res) => {
+UserRouter.delete('/', (req, res) => {
     res.status(200).json('delete user');
 });

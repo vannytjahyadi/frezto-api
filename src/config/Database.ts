@@ -1,15 +1,23 @@
 var getDBConfig = () => {
 
   let configVar = {
-      development: {
+      local: {
         type: "mysql",
         host: "localhost",
         port: 3306,
         username: "root",
         password: null,
-        database: "my_api_dev",
+        database: "frezto_dev",
     },
-      test: {
+    development: {
+        type: "mysql",
+        host: "localhost",
+        port: 3306,
+        username: "root",
+        password: null,
+        database: "frezto_dev",
+    },
+    test: {
         type: "mysql",
         host: "localhost",
         port: 3306,
@@ -17,7 +25,7 @@ var getDBConfig = () => {
         password: "test",
         database: "test"
     },
-      production: {
+    production: {
         type: "mysql",
         host: "tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         port: 3306,
@@ -27,7 +35,7 @@ var getDBConfig = () => {
     }
   }
 
-  return configVar[process.env.NODE_ENV || "development"];
+  return configVar[process.env.NODE_ENV || "local"];
 }
 
 var globalConfig = {

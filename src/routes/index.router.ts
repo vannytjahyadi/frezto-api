@@ -1,15 +1,15 @@
 import { Router } from 'express';
 
-import { authRouter } from './api/v1/Auth.router';
-import { userRouter } from './api/v1/User.router';
+import { AuthRouter } from './api/v1/Auth.router';
+import { UserRouter } from './api/v1/User.router';
 
 export const router = Router();
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     res.status(200).send(
         'hello there :)'
     );
 }); 
 
-router.use('/api/v1/auth', authRouter);
-router.use('/api/v1/user', userRouter);
+router.use('/api/v1/auth', AuthRouter);
+router.use('/api/v1/user', UserRouter);

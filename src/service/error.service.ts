@@ -1,5 +1,4 @@
 import * as underscore from 'underscore';
-import config from '@config/Config';
 import configErrorCode from '@config/ErrorCode';
 
 import { TranslateService } from '@service/Translate.service';
