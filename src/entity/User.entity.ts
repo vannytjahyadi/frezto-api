@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { UserToken } from "./UserToken.entity";
 
 import { MailService } from "@service/Mail.service";
-import { HelperService } from "@service/Helper.service";
 
 @Entity()
 export class User {
@@ -44,7 +43,7 @@ export class User {
     }
 
     static sendOtp(user, otpCode) {
-        MailService.sendEmail("user", user['email'], 'OTP CODE', 'example', {
+        MailService.sendEmail("user", user['email'], 'OTP CODE', 'verification', {
             first_name: user['first_name'],
             last_name: user['last_name'],
             otp_code: otpCode

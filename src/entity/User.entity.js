@@ -19,7 +19,7 @@ var User = /** @class */ (function () {
         this.created_at = new Date();
     };
     User.sendOtp = function (user, otpCode) {
-        Mail_service_1.MailService.sendEmail("user", user['email'], 'OTP CODE', 'example', {
+        Mail_service_1.MailService.sendEmail("user", user['email'], 'OTP CODE', 'verification', {
             first_name: user['first_name'],
             last_name: user['last_name'],
             otp_code: otpCode
