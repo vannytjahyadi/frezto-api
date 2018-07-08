@@ -1,9 +1,9 @@
 {
    "type": "mysql",
-   "host": "tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+   "host": "localhost",
    "port": 3306,
-   "username": "bgooq8l26xd8xu8w",
-   "password": "jif3290giohx08fq",
+   "username": "root",
+   "password": null,
    "database": "frezto_dev",
    "synchronize": false,
    "logging": true,

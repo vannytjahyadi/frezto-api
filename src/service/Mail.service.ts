@@ -1,5 +1,5 @@
 import * as nodemailer from 'nodemailer';
-import config from '@config/config';
+import config from '../config/config';
 
 import { EjsService } from './Ejs.service';
 

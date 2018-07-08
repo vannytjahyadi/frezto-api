@@ -14,13 +14,6 @@ export class CreateUserTable1530590014083 implements MigrationInterface {
                     isPrimary: true,
                 },
                 {
-                    name: "username",
-                    type: "varchar",
-                    length: "150",
-                    isUnique: true,
-                    isNullable: true
-                },
-                {
                     name: "email",
                     type: "varchar",
                     length: "200",
@@ -54,6 +47,11 @@ export class CreateUserTable1530590014083 implements MigrationInterface {
                     name: "phone_number",
                     type: "varchar",
                     isNullable: true
+                },
+                {
+                    name: "is_verified",
+                    type: "boolean",
+                    default: false,
                 },
                 {
                     name: "created_at",

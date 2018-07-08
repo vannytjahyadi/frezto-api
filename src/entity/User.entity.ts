@@ -1,16 +1,14 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToOne, BeforeInsert } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, BeforeInsert, getRepository } from "typeorm";
 import { UserToken } from "./UserToken.entity";
 
-import { MailService } from "@service/Mail.service";
+import { HelperService } from "../service/Helper.service";
+import { MailService } from "../service/Mail.service";
 
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
     id: number;
-
-    @Column()
-    username: string;
 
     @Column()
     email: string;
@@ -24,10 +22,13 @@ export class User {
     @Column()
     last_name: string;
 
-    @CreateDateColumn()
+    @Column()
+    is_verified: boolean;
+
+    @Column()
     created_at: Date;
 
-    @UpdateDateColumn()
+    @Column()
     updated_at: Date;
 
     @Column()
@@ -35,11 +36,33 @@ export class User {
 
     //Relations
     @OneToOne(type => UserToken, userToken => userToken.user )
-    userToken: UserToken;
+    userToken: Promise<UserToken>;
 
     @BeforeInsert()
     beforeInsert() {
+        this.email = this.email.trim().toLowerCase();
+        this.first_name = this.first_name.trim().toLowerCase();
+        this.last_name = this.last_name.trim().toLowerCase();
         this.created_at = new Date();
+    }
+
+    static async createUser(params) {
+        const userRepository = getRepository(User);
+        const userTokenRepository = getRepository(UserToken);
+
+        //create user
+        const newUser = userRepository.create(params);
+        await userRepository.save(newUser);
+
+        //create user token
+        const userToken = new UserToken();
+        userToken.user_id = newUser["id"];
+        userToken.otp_code = HelperService.generateOtpCode();
+        userToken.expired_at = new Date();
+        await userTokenRepository.save(userToken);
+
+        newUser['userToken'] = userToken; 
+        return newUser;
     }
 
     static sendOtp(user, otpCode) {

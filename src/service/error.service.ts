@@ -37,8 +37,6 @@ export class ErrorService {
         if (data) {
             Error['data'] = data;
         }
-
-        console.log(Error);
         
         res.status(statusCode).send(Error);
 	}

@@ -4,15 +4,33 @@ import { User } from "@entity/User.entity";
 
 import { ErrorService } from "@service/Error.service";
 
-export class RegisterController {
+export class LoginController {
     
     constructor() {}
 
-    async register(req:any, res:any) {
+    async login(req:any, res:any) {
 
         const userRepository = getRepository(User);
 
         const user = await userRepository.findOne({email: req.body.email});
+
+        if (req.body.type == 'default') {
+            if (user && user['is_verified']) {
+                //return access token
+            } else {
+                //belom terdaftar
+            }
+        } else {
+            if (user) {
+                //kalo udah verified
+                // return access token
+                // kalo belom verified
+                //send otp
+            } else {
+                // daftarin
+                //send otp
+            }
+        }
 
         if (user) {
             const userToken = await user.userToken;

@@ -8,7 +8,7 @@ import * as expressValidator  from 'express-validator';
 var multipart = require('connect-multiparty');
 require('module-alias/register');
 
-import { router } from './routes/index.router';
+import { router } from './routes/Index.router';
 
 import config from '@config/Config';
 import dbConfig from '@config/Database';
