@@ -15,39 +15,53 @@ export class LoginController {
         const user = await userRepository.findOne({email: req.body.email});
 
         if (req.body.type == 'default') {
-            if (user && user['is_verified']) {
-                //return access token
-            } else {
-                //belom terdaftar
-            }
+            await this.loginByDefault(req, res, user);
         } else {
-            if (user) {
-                //kalo udah verified
-                // return access token
-                // kalo belom verified
-                //send otp
-            } else {
-                // daftarin
-                //send otp
-            }
-        }
-
-        if (user) {
-            const userToken = await user.userToken;
-
-            if (user['is_verified']) {
-                ErrorService.sendErrorResponse(res, 50001);
-                return false;
-            } else {
-                User.sendOtp(user, userToken['otp_code']);
-            }
-        } else {
-           const newUser = await User.createUser(req.body);
-           User.sendOtp(newUser, newUser['userToken']['otp_code']);
+            await this.loginBySocial(req, res, user);
         }
 
         res.status(200).json({
             result: "Success"
         });
+    }
+
+    async loginByDefault(req, res, user) {
+        if (user) {
+            if (user['is_verified']) {
+                if(user['password'] === req.body.password) {
+                    res.status(200).json({
+                        result: "Success",
+                        accessToken: "123456"
+                    });
+                } else {
+                    ErrorService.sendErrorResponse(res, 50003);
+                }
+                
+            } else {
+                const userToken = await user.userToken;
+                User.sendOtp(user, userToken['otp_code']);
+            }
+           
+        } else {
+            ErrorService.sendErrorResponse(res, 50002);
+        }
+    }
+
+    async loginBySocial(req, res, user) {
+        if (user) { 
+            if (user['is_verified']) {
+                res.status(200).json({
+                    result: "Success",
+                    accessToken: "123456"
+                });
+            } else {
+                const userToken = await user.userToken;
+                User.sendOtp(user, userToken['otp_code']);
+            }
+            
+        } else {
+            const newUser = await User.createUser(req.body);
+            User.sendOtp(newUser, newUser['userToken']['otp_code']);
+        }
     }
 }

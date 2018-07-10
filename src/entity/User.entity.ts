@@ -1,8 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, BeforeInsert, getRepository } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, BeforeInsert, BeforeUpdate, getRepository } from "typeorm";
 import { UserToken } from "./UserToken.entity";
 
 import { HelperService } from "../service/Helper.service";
 import { MailService } from "../service/Mail.service";
+
+import * as moment from 'moment';
 
 @Entity()
 export class User {
@@ -43,7 +45,12 @@ export class User {
         this.email = this.email.trim().toLowerCase();
         this.first_name = this.first_name.trim().toLowerCase();
         this.last_name = this.last_name.trim().toLowerCase();
-        this.created_at = new Date();
+        this.created_at = moment().toDate();
+    }
+
+    @BeforeUpdate()
+    beforeUpdate() {
+        this.updated_at = moment().toDate();
     }
 
     static async createUser(params) {
