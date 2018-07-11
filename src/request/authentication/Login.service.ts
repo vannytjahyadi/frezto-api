@@ -1,6 +1,3 @@
-import { getRepository } from "typeorm";
-import { User } from "@entity/User.entity";
-
 import { ErrorService } from "@service/Error.service";
 
 export class LoginRequestService {
@@ -11,12 +8,14 @@ export class LoginRequestService {
         req.check("type")
             .exists().withMessage("required")
             .notEmpty().withMessage("empty")
-            .isIn(['default', 'facebook', 'googleplus', 'linkedin']).withMessage("Type must contain selected type");
+            .isIn(['default', 'facebook', 'googleplus', 'linkedin']).withMessage("custom:Type must contain selected type");
 
         req.check("email")
             .exists().withMessage("required")
             .notEmpty().withMessage("empty")
-            .isEmail().withMessage("invalid").normalizeEmail();
+            .isEmail().withMessage("invalid")
+            .isLength({ min: 1 }).withMessage("min:1")
+            .isLength({ max: 150 }).withMessage("max:150").normalizeEmail();
 
         if (req.body.type != undefined) {
             if (req.body.type == 'default') {
