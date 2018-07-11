@@ -20,18 +20,17 @@ export class LoginController {
         } else {
             await LoginController.loginBySocial(req, res, user);
         }
-
-        res.status(200).json({
-            result: "Success"
-        });
     }
 
     static async loginByDefault(req, res, user) {
         if (user) {
             if (user['is_verified']) {
                 if(user['password'] === req.body.password.trim()) {
-                    let result = TokenService.createToken(user);
-                    result['result'] = 'Success';
+                    let token = TokenService.createToken(user);
+                    let result = {
+                        result: 'Success',
+                        data: token
+                    };
                     res.status(200).json(result);
 
                 } else {
@@ -41,6 +40,9 @@ export class LoginController {
             } else {
                 const userToken = await user.userToken;
                 User.sendOtp(user, userToken['otp_code']);
+                res.status(200).json({
+                    result: "Success"
+                });
             }
            
         } else {
@@ -52,17 +54,26 @@ export class LoginController {
         if (user) { 
             if (user['is_verified']) {
 
-                let result = TokenService.createToken(user);
-                result['result'] = 'Success';
+                let token = TokenService.createToken(user);
+                let result = {
+                    result: 'Success',
+                    data: token
+                };
                 res.status(200).json(result);
             } else {
                 const userToken = await user.userToken;
                 User.sendOtp(user, userToken['otp_code']);
+                res.status(200).json({
+                    result: "Success"
+                });
             }
             
         } else {
             const newUser = await User.createUser(req.body);
             User.sendOtp(newUser, newUser['userToken']['otp_code']);
+            res.status(200).json({
+                result: "Success"
+            });
         }
     }
 }
