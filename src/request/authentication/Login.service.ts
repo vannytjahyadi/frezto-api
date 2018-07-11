@@ -18,18 +18,19 @@ export class LoginRequestService {
             .notEmpty().withMessage("empty")
             .isEmail().withMessage("invalid").normalizeEmail();
 
-
-        if (req.body.type == 'default') {
-            req.check("password")
-                .exists().withMessage("required");
-        } else {
-            req.check("first_name")
-                .exists().withMessage("required")
-                .notEmpty().withMessage("empty");
-
-            req.check("last_name")
-                .exists().withMessage("required")
-                .notEmpty().withMessage("empty");
+        if (req.body.type != undefined) {
+            if (req.body.type == 'default') {
+                req.check("password")
+                    .exists().withMessage("required");
+            } else {
+                req.check("first_name")
+                    .exists().withMessage("required")
+                    .notEmpty().withMessage("empty");
+    
+                req.check("last_name")
+                    .exists().withMessage("required")
+                    .notEmpty().withMessage("empty");
+            }
         }
 
         var errors = req.validationErrors();

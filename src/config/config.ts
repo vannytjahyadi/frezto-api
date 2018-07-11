@@ -2,6 +2,11 @@ var getConfig = () => {
 
     let configVar = {
         local: {
+            token: {
+                webKey: "fr3t0w3bl0c",
+                expiration_for_access_token: "1d",
+                expiration_for_refresh_token: "1d"
+            },
             white_list_url:  [
                 'http://127.0.0.1:8080',
                 'http://localhost:4200'
@@ -13,6 +18,9 @@ var getConfig = () => {
             }
         },
         development: {
+            token: {
+                webKey: "fr3t0w3bd3v"
+            },
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",
@@ -20,6 +28,9 @@ var getConfig = () => {
             }
         },
         test: {
+            token: {
+                webKey: "fr3t0w3bt3st"
+            },
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",
@@ -27,6 +38,9 @@ var getConfig = () => {
             }
         },
         production: {
+            token: {
+                webKey: "fr3t0w3bpr0d"
+            },
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",

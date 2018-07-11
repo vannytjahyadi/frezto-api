@@ -16,22 +16,19 @@ export class ResendCodeController {
 
         const user = await userRepository.findOne({email: req.body.email});
 
-        if (user) {
-            if (user['is_verified']) {
-                ErrorService.sendErrorResponse(res, 50001);
-                return false;
-            } else {
-
-                //check last request time if its more than 120 seconds from last request then allow resend code
-                
-                const userTokenRepository = getRepository(UserToken);
-
-                const userToken = await user.userToken;
-                userToken.otp_code = HelperService.generateOtpCode();
-                await userTokenRepository.save(userToken);
-                User.sendOtp(user, userToken['otp_code']);
-            }
+        if (!user) {
+            ErrorService.sendErrorResponse(res, 50002);
+            return false;
         }
+
+        //check last request time if its more than 120 seconds from last request then allow resend code
+        
+        const userTokenRepository = getRepository(UserToken);
+
+        const userToken = await user.userToken;
+        userToken.otp_code = HelperService.generateOtpCode();
+        await userTokenRepository.save(userToken);
+        User.sendOtp(user, userToken['otp_code']);
 
         res.status(200).json({
             result: "Success"

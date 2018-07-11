@@ -2,6 +2,7 @@ import { getRepository } from "typeorm";
 
 import { User } from "@entity/User.entity";
 
+import { TokenService } from "@service/Token.service";
 import { ErrorService } from "@service/Error.service";
 
 export class LoginController {
@@ -15,9 +16,9 @@ export class LoginController {
         const user = await userRepository.findOne({email: req.body.email});
 
         if (req.body.type == 'default') {
-            await this.loginByDefault(req, res, user);
+            await LoginController.loginByDefault(req, res, user);
         } else {
-            await this.loginBySocial(req, res, user);
+            await LoginController.loginBySocial(req, res, user);
         }
 
         res.status(200).json({
@@ -25,14 +26,14 @@ export class LoginController {
         });
     }
 
-    async loginByDefault(req, res, user) {
+    static async loginByDefault(req, res, user) {
         if (user) {
             if (user['is_verified']) {
-                if(user['password'] === req.body.password) {
-                    res.status(200).json({
-                        result: "Success",
-                        accessToken: "123456"
-                    });
+                if(user['password'] === req.body.password.trim()) {
+                    let result = TokenService.createToken(user);
+                    result['result'] = 'Success';
+                    res.status(200).json(result);
+
                 } else {
                     ErrorService.sendErrorResponse(res, 50003);
                 }
@@ -47,13 +48,13 @@ export class LoginController {
         }
     }
 
-    async loginBySocial(req, res, user) {
+    static async loginBySocial(req, res, user) {
         if (user) { 
             if (user['is_verified']) {
-                res.status(200).json({
-                    result: "Success",
-                    accessToken: "123456"
-                });
+
+                let result = TokenService.createToken(user);
+                result['result'] = 'Success';
+                res.status(200).json(result);
             } else {
                 const userToken = await user.userToken;
                 User.sendOtp(user, userToken['otp_code']);
