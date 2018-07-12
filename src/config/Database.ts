@@ -11,11 +11,11 @@ var getDBConfig = () => {
     },
     development: {
         type: "mysql",
-        host: "localhost",
+        host: "g9fej9rujq0yt0cd.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
         port: 3306,
-        username: "root",
-        password: null,
-        database: "frezto_dev",
+        username: "yerwgpyhszl1fd7y",
+        password: "t0xdmski91lwqd70",
+        database: "ro17dplddfhx522v",
     },
     test: {
         type: "mysql",
