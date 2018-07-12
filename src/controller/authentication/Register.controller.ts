@@ -27,7 +27,10 @@ export class RegisterController {
                 User.sendOtp(updatedUser, userToken['otp_code']);
             }
         } else {
+            console.log('register');
            const newUser = await User.createUser(req.body);
+           console.log(newUser);
+           console.log(newUser['userToken']['otp_code']);
            User.sendOtp(newUser, newUser['userToken']['otp_code']);
         }
 

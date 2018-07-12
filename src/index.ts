@@ -22,6 +22,21 @@ createConnection(dbConfig).then(async connection => {
     app.use(multipart());
     app.use(expressValidator());
 
+    app.use(function(req, res, next) {
+        var allowedOrigins = config.white_list_url;
+        var origin = req.headers.origin;
+        if(allowedOrigins.indexOf(origin) > -1){
+             res.setHeader('Access-Control-Allow-Origin', origin);
+        } else {
+            res.setHeader('Access-Control-Allow-Origin', null);
+        }
+        
+        res.header('Access-Control-Allow-Methods', 'OPTIONS. GET, POST, PUT, PATCH, DELETE');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        res.header('Access-Control-Allow-Credentials', "true");
+        return next();
+      });
+
     app.use('/', router);
 
     app.listen(port, () => {

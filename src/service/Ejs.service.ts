@@ -12,6 +12,7 @@ export class EjsService {
         let filePath = path.join(__dirname, fileLocation);
 
         let content = fs.readFileSync(filePath, 'utf8');
+        console.log(params);
         html = ejs.render(content, params);
 
         return html;

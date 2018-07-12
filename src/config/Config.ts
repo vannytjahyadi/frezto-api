@@ -21,6 +21,10 @@ var getConfig = () => {
             token: {
                 webKey: "fr3t0w3bd3v"
             },
+            white_list_url:  [
+                'http://127.0.0.1:8080',
+                'http://localhost:4200'
+            ],
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",
@@ -31,6 +35,10 @@ var getConfig = () => {
             token: {
                 webKey: "fr3t0w3bt3st"
             },
+            white_list_url:  [
+                'http://127.0.0.1:8080',
+                'http://localhost:4200'
+            ],
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",
@@ -41,6 +49,10 @@ var getConfig = () => {
             token: {
                 webKey: "fr3t0w3bpr0d"
             },
+            white_list_url:  [
+                'http://127.0.0.1:8080',
+                'http://localhost:4200'
+            ],
             mail: {
                 sender: 'no-reply@safewave.io',
                 user: "development.env",
