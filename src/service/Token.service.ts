@@ -1,4 +1,4 @@
-import config from '@config/Config';
+import config from '../config/Config';
 import * as jwt from 'jsonwebtoken';
 
 export class TokenService {
