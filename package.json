@@ -40,16 +40,5 @@
    },
    "engines": {
       "node": "9.11.1"
-   },
-   "_moduleAliases": {
-      "@root": ".",
-      "@config": "src/config",
-      "@controller": "src/controller",
-      "@entity": "src/entity",
-      "@middleware": "src/middleware",
-      "@request": "src/request",
-      "@routes": "src/routes",
-      "@service": "src/service",
-      "@view": "src/view"
    }
 }
