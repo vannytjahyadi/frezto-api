@@ -6,12 +6,11 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as expressValidator  from 'express-validator';
 var multipart = require('connect-multiparty');
-require('module-alias/register');
 
 import { router } from './routes/Index.router';
 
-import config from '@config/Config';
-import dbConfig from '@config/Database';
+import config from './config/Config';
+import dbConfig from './config/Database';
 
 createConnection(dbConfig).then(async connection => {
 
@@ -32,7 +31,7 @@ createConnection(dbConfig).then(async connection => {
             res.setHeader('Access-Control-Allow-Origin', null);
         }
         
-        res.header('Access-Control-Allow-Methods', 'OPTIONS. GET, PUT, DELETE, POST');
+        res.header('Access-Control-Allow-Methods', 'OPTIONS. GET, POST, PUT, PATCH, DELETE');
         res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         res.header('Access-Control-Allow-Credentials', "true");
         return next();
