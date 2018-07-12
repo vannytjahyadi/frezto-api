@@ -1,7 +1,7 @@
 import * as underscore from 'underscore';
-import configErrorCode from '@config/ErrorCode';
+import configErrorCode from '../config/ErrorCode';
 
-import { TranslateService } from '@service/Translate.service';
+import { TranslateService } from '../service/Translate.service';
 
 export class ErrorService {
     

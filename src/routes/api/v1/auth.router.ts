@@ -1,14 +1,14 @@
 import { Router } from 'express';
 
-import { LoginRequestService } from '@request/authentication/Login.service';
-import { RegisterRequestService } from '@request/authentication/Register.service';
-import { ResendCodeRequestService } from '@request/authentication/ResendCode.service';
-import { VerifyCodeRequestService } from '@request/authentication/VerifyCode.service';
+import { LoginRequestService } from '../../../request/authentication/Login.service';
+import { RegisterRequestService } from '../../../request/authentication/Register.service';
+import { ResendCodeRequestService } from '../../../request/authentication/ResendCode.service';
+import { VerifyCodeRequestService } from '../../../request/authentication/VerifyCode.service';
 
-import { LoginController } from '@controller/authentication/Login.controller';
-import { RegisterController } from '@controller/authentication/Register.controller';
-import { ResendCodeController } from '@controller/authentication/ResendCode.controller';
-import { VerifyCodeController } from '@controller/authentication/VerifyCode.controller';
+import { LoginController } from '../../../controller/authentication/Login.controller';
+import { RegisterController } from '../../../controller/authentication/Register.controller';
+import { ResendCodeController } from '../../../controller/authentication/ResendCode.controller';
+import { VerifyCodeController } from '../../../controller/authentication/VerifyCode.controller';
 
 export const AuthRouter = Router();
 

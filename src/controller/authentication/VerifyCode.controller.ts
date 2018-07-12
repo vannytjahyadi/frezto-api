@@ -1,8 +1,8 @@
 import { getRepository } from "typeorm";
 
-import { User } from "@entity/User.entity";
+import { User } from "../../entity/User.entity";
 
-import { ErrorService } from "@service/Error.service";
+import { ErrorService } from "../../service/Error.service";
 
 import * as moment from 'moment';
 

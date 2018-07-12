@@ -1,7 +1,7 @@
-import config from '@config/Config';
+import config from '../config/Config';
 import * as jwt from 'jsonwebtoken';
 
-import { ErrorService } from '@service/Error.service';
+import { ErrorService } from '../service/Error.service';
 
 export class AuthorizationMiddleware {
 

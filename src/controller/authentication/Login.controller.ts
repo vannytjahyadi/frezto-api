@@ -1,9 +1,9 @@
 import { getRepository } from "typeorm";
 
-import { User } from "@entity/User.entity";
+import { User } from "../../entity/User.entity";
 
-import { TokenService } from "@service/Token.service";
-import { ErrorService } from "@service/Error.service";
+import { TokenService } from "../../service/Token.service";
+import { ErrorService } from "../../service/Error.service";
 
 export class LoginController {
     

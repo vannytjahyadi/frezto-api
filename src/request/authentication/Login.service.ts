@@ -1,4 +1,4 @@
-import { ErrorService } from "@service/Error.service";
+import { ErrorService } from "../../service/Error.service";
 
 export class LoginRequestService {
     

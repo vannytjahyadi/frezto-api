@@ -6,7 +6,7 @@ import { UserToken } from "../../entity/UserToken.entity";
 import { ErrorService } from "../../service/Error.service";
 import { HelperService } from "../../service/Helper.service";
 
-export class ResendCodeController {
+export class UpdatePatchController {
     
     constructor() {}
 

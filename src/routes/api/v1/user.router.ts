@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { AuthorizationMiddleware } from '@middleware/Authorization.middleware';
+import { AuthorizationMiddleware } from '../../../middleware/Authorization.middleware';
 
 export const UserRouter = Router();
 

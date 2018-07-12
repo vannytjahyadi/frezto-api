@@ -1,6 +1,6 @@
-import config from '@config/Config';
+import config from '../config/Config';
 
-import { HelperService } from '@service/Helper.service';
+import { HelperService } from '../service/Helper.service';
 
 export class TranslateService {
 
